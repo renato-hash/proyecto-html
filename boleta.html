@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprobante de Pago</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5 text-center">
+        <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
+
+            <h1 class="text-success fw-bold">¡Pago Exitoso!</h1>
+            <p class="fs-5">Gracias por tu compra.</p>
+
+            <div class="card-body p-4">
+                <h4 class="text-center mb-4">Resumen de Boleta</h4>
+                <hr>
+                <p class="mb-1"><strong>Estado:</strong> Pagado</p>
+                <p class="mb-3"><strong>Fecha:</strong> <span id="fecha-hoy"></span></p>
+
+                <!-- AQUÍ SE INYECTAN LOS PRODUCTOS -->
+                <div id="lista-productos-boleta" class="mt-3 text-start"></div>
+
+                <hr>
+                <!-- AQUÍ SE INYECTA EL TOTAL -->
+                <h5 class="text-end fw-bold text-success mt-3">
+                    Total Pagado: $<span id="total-boleta">0</span>
+                </h5>
+            </div>
+            
+            <a href="index.html" class="btn btn-warning fw-bold text-dark w-100">
+                Volver a la tienda
+            </a>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT QUE HACE LA MAGIA DE LEER LOS DATOS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Poner la fecha
+            const fechaHoy = document.getElementById('fecha-hoy');
+            if (fechaHoy) fechaHoy.innerText = new Date().toLocaleDateString();
+
+            // 2. LEER LOS DATOS GUARDADOS
+            let ordenGuardada = JSON.parse(localStorage.getItem('ultimaOrden'));
+            
+            let contenedorProductos = document.getElementById('lista-productos-boleta');
+            let totalBoleta = document.getElementById('total-boleta');
+
+            // 3. Imprimir los productos en pantalla
+            if (ordenGuardada && ordenGuardada.productos && ordenGuardada.productos.length > 0) {
+                let htmlProductos = '';
+                
+                ordenGuardada.productos.forEach(producto => {
+                    let subtotal = Number(producto.price) * Number(producto.quantity);
+                    
+                    htmlProductos += `
+                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom" style="font-size: 14px;">
+                            <span>${producto.name} <strong>x${producto.quantity}</strong></span>
+                            <span>$${subtotal.toLocaleString('es-CL')}</span>
+                        </div>
+                    `;
+                });
+                
+                if (contenedorProductos) contenedorProductos.innerHTML = htmlProductos;
+                if (totalBoleta) totalBoleta.innerText = Number(ordenGuardada.total).toLocaleString('es-CL');
+                
+            } else {
+                if (contenedorProductos) contenedorProductos.innerHTML = '<p class="text-center text-muted">No hay compras recientes.</p>';
+            }
+        });
+    </script>
+</body>
+
+</html>
