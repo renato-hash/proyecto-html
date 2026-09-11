@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8" />
@@ -358,49 +358,41 @@
                         </div>
                     </div>
                 </section>
+ 
                     
-    <section class="page-section" id="contact"> 
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase text-white">Contacto</h2>
-                <h3 class="section-subheading text-muted">Déjanos tu mensaje y te responderemos lo antes posible.</h3>
+   <section class="page-section bg-dark text-white py-5" id="contacto">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="section-heading text-uppercase fw-bold text-warning">Soporte y Post-Venta</h2>
+            <p class="text-muted">¿Tienes dudas sobre el seguimiento de tu pedido, cambios o devoluciones? Escríbenos.</p>
+        </div>
+
+        <form id="contactForm">
+            <div class="row align-items-stretch mb-4">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <input class="form-control" id="nombreContacto" type="text" placeholder="Tu Nombre *" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <input class="form-control" id="emailContacto" type="email" placeholder="Tu Correo Electrónico *" required />
+                    </div>
+                    <div class="form-group mb-3 mb-md-0">
+                        <input class="form-control" id="ordenContacto" type="text" placeholder="N° de Orden / Teléfono *" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group h-100">
+                        <textarea class="form-control h-100" id="mensajeContacto" placeholder="Escribe aquí tu duda, reclamo o solicitud de cambio..." style="min-height: 150px;" required></textarea>
+                    </div>
+                </div>
             </div>
 
-            
-            <form id="contactForm">
-                <div class="row g-4 mb-4">
-                    
-                    
-                    <div class="col-12 col-md-6">
-                    
-                        <div class="mb-3">
-                            <input class="form-control form-control-lg" id="name" type="text" placeholder="Tu Nombre" required />
-                        </div>
-                        <div class="mb-3">
-                            <input class="form-control form-control-lg" id="email" type="email" placeholder="Tu Email " required />
-                        </div>
-                        <div class="mb-3 mb-md-0">
-                            <input class="form-control form-control-lg" id="phone" type="tel" placeholder="Tu Teléfono " required />
-                        </div>
-                    </div>
-
-
-                    <div class="col-12 col-md-6">
-                        <div class="h-100">
-                            <textarea class="form-control form-control-lg h-100" id="message" placeholder="Tu Mensaje " style="min-height: 180px;" required></textarea>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="text-center mt-4">
-                    <button class="btn btn-warning btn-xl text-uppercase fw-bold px-5 py-3" type="submit">
-                        Enviar Mensaje
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section>
+            <div class="text-center">
+                <button class="btn btn-warning btn-xl text-uppercase fw-bold px-4 py-2" id="submitButton" type="submit">Enviar Consulta</button>
+            </div>
+        </form>
+    </div>
+</section>
                 <!-- Footer-->
                 <footer class="footer py-4">
                     <div class="container">
@@ -715,7 +707,8 @@
                                 <div>
                                     <button type="button" class="btn btn-outline-light me-2"
                                         data-bs-dismiss="modal">Seguir comprando</button>
-                                    <button type="button" class="btn btn-warning fw-bold text-dark">Pagar</button>
+                                    <button type="button" id="btn-pagar"
+                                        class="btn btn-warning fw-bold text-dark">Pagar</button>
                                 </div>
                             </div>
                         </div>
@@ -727,6 +720,7 @@
                 <!-- Core theme JS-->
                 <script src="js/scripts.js"></script>
                 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+                <script src="boleta.js"></script>
 </body>
 
 </html>
